@@ -30,16 +30,16 @@ public class Vehicule {
     private CategorieVehicule categorie;
     private StatutVehicule statut;
 
-   // @JsonIgnore
+   @JsonIgnore
     @ManyToOne
     private Agence agence;
 
-  //  @JsonIgnore
+    @JsonIgnore
     @ManyToMany
     private List<Equipement> equipements;
 
 
-  //  @JsonIgnore
+    @JsonIgnore
     @OneToMany(mappedBy = "vehicule")
     List<Reservation> reservations;
 }

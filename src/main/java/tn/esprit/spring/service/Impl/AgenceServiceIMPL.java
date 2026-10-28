@@ -3,7 +3,10 @@ package tn.esprit.spring.service.Impl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.spring.entity.Agence;
+import tn.esprit.spring.entity.Employe;
+import tn.esprit.spring.entity.Vehicule;
 import tn.esprit.spring.repository.AgenceRepository;
+import tn.esprit.spring.repository.VehiculeRepository;
 import tn.esprit.spring.service.Interface.IAgenceService;
 
 import java.util.List;
@@ -13,6 +16,8 @@ import java.util.List;
 public class AgenceServiceIMPL implements IAgenceService {
 
     AgenceRepository agenceRepository;
+
+
 
     @Override
     public Agence creer(Agence agence) {

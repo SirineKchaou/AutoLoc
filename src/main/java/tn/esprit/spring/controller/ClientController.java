@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.spring.entity.CategorieVehicule;
 import tn.esprit.spring.entity.Client;
 import tn.esprit.spring.service.Interface.IClientService;
 
@@ -16,6 +17,11 @@ import java.util.List;
 @RequestMapping("/ClientController")
 public class ClientController {
     IClientService iClientService;
+
+    @GetMapping("/ListClients/{nom}/{prenom}/{vehicule}/{cv}")
+    public List<Client> getByNomPrenomMarqueCategorieVehicule(@PathVariable String nom, @PathVariable String prenom,@PathVariable String vehicule,@PathVariable CategorieVehicule cv) {
+        return iClientService.getByNomPrenomMarqueCategorieVehicule(nom, prenom, vehicule, cv);
+    }
 
     @PostMapping("/addAffect")
     public Client ajouterClientReservation(@RequestBody  Client c) {

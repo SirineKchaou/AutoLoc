@@ -1,6 +1,7 @@
 package tn.esprit.spring.service.Interface;
 
 import tn.esprit.spring.entity.Agence;
+import tn.esprit.spring.entity.Employe;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface IAgenceService {
     Agence mettreAJour(Agence agence);
 
     void supprimer(Long id);
+
+
 }

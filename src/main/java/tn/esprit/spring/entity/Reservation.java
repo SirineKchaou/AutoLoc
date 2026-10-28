@@ -28,7 +28,7 @@ public class Reservation {
     @Enumerated(EnumType.STRING)
     private StatutReservation statut;
 
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToOne
     Client client;
 
@@ -36,7 +36,7 @@ public class Reservation {
     @OneToOne(cascade = CascadeType.ALL)
     Contrat contrat;
 
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToOne
     Vehicule vehicule;
 }

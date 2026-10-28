@@ -1,5 +1,6 @@
 package tn.esprit.spring.service.Interface;
 
+import tn.esprit.spring.entity.CategorieVehicule;
 import tn.esprit.spring.entity.Client;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface IClientService {
     void supprimer(Long id);
 
     Client ajouterClientReservation(Client c);
+
+    List<Client> getByNomPrenomMarqueCategorieVehicule(String nom, String prenom, String vehicule, CategorieVehicule cv);
 }

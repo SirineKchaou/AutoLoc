@@ -2,6 +2,7 @@ package tn.esprit.spring.service.Impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import tn.esprit.spring.entity.CategorieVehicule;
 import tn.esprit.spring.entity.Client;
 import tn.esprit.spring.entity.Reservation;
 import tn.esprit.spring.repository.ClientRepository;
@@ -17,6 +18,12 @@ public class ClientServiceIMPL implements IClientService {
     ClientRepository clientRepository;
     ReservationRepository reservationRepository;
 
+    @Override
+    public List<Client> getByNomPrenomMarqueCategorieVehicule(String nom, String prenom, String vehicule, CategorieVehicule cv) {
+        return clientRepository.findByNomAndPrenomAndReservationsVehiculeMarqueAndReservationsVehiculeCategorie(
+                nom, prenom, vehicule, cv
+        );
+    }
 
     @Override
     public Client ajouterClientReservation(Client c) {
