@@ -18,9 +18,11 @@ import java.util.List;
 public class ClientController {
     IClientService iClientService;
 
-    @GetMapping("/ListClients/{nom}/{prenom}/{vehicule}/{cv}")
-    public List<Client> getByNomPrenomMarqueCategorieVehicule(@PathVariable String nom, @PathVariable String prenom,@PathVariable String vehicule,@PathVariable CategorieVehicule cv) {
-        return iClientService.getByNomPrenomMarqueCategorieVehicule(nom, prenom, vehicule, cv);
+
+
+    @GetMapping("/ListClientsJPQL/{nom}/{prenom}/{marque}/{cv}")
+    public List<Client> getByNomPrenomMarqueCategorieVehicule(@PathVariable String nom, @PathVariable String prenom,@PathVariable String marque,@PathVariable CategorieVehicule cv) {
+        return iClientService.getByNomPrenomMarqueCategorieVehicule(nom, prenom, marque, cv);
     }
 
     @PostMapping("/addAffect")

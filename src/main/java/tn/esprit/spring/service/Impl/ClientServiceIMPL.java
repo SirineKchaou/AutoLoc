@@ -19,10 +19,8 @@ public class ClientServiceIMPL implements IClientService {
     ReservationRepository reservationRepository;
 
     @Override
-    public List<Client> getByNomPrenomMarqueCategorieVehicule(String nom, String prenom, String vehicule, CategorieVehicule cv) {
-        return clientRepository.findByNomAndPrenomAndReservationsVehiculeMarqueAndReservationsVehiculeCategorie(
-                nom, prenom, vehicule, cv
-        );
+    public List<Client> getByNomPrenomMarqueCategorieVehicule(String nom, String prenom, String marque, CategorieVehicule cv) {
+        return clientRepository.getClientVehicule(nom,prenom,marque,cv);
     }
 
     @Override

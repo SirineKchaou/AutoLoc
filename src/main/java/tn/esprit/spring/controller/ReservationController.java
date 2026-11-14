@@ -4,9 +4,11 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.spring.entity.CategorieVehicule;
 import tn.esprit.spring.entity.Reservation;
 import tn.esprit.spring.service.Interface.IReservationService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Tag(name = "Gestion des Reservations")
@@ -15,6 +17,15 @@ import java.util.List;
 @RequestMapping("/ReservationController")
 public class ReservationController {
     IReservationService iReservationService;
+
+    @PutMapping("/affectReservationVehicule/{matricule}/{marque}/{cv}/{dateDebut}/{dateFin}")
+    public void affecterVehiculeReservation(@PathVariable String matricule, @PathVariable String marque,@PathVariable CategorieVehicule cv,@PathVariable LocalDate dateDebut,@PathVariable LocalDate dateFin) {
+        iReservationService.affecterVehiculeReservation(matricule, marque, cv, dateDebut, dateFin);
+    }
+
+    public Reservation listReservation(LocalDate datedebut, LocalDate detfin) {
+        return iReservationService.listReservation(datedebut, detfin);
+    }
 
     @PutMapping("/desaffectVehicule/{idReservation}")
     public Reservation desaffecterReservationVehicule(Long idReservation) {

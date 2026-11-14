@@ -1,6 +1,8 @@
 package tn.esprit.spring.service.Interface;
 
 import tn.esprit.spring.entity.Agence;
+import tn.esprit.spring.entity.CategorieVehicule;
+import tn.esprit.spring.entity.StatutVehicule;
 import tn.esprit.spring.entity.Vehicule;
 
 import java.math.BigDecimal;
@@ -46,10 +48,50 @@ public interface IVehiculeService {
 
     List<Vehicule> tarifVehiculeMoreEqual(BigDecimal tarifJournalier);
 
-    List<Vehicule> tarifVehiculeEntre(BigDecimal tarifJournalier);
+    List<Vehicule> tarifVehiculeEntre(BigDecimal min, BigDecimal max);
 
-    List<Vehicule> tarifVehiculeAsc(BigDecimal tarifJournalier);
+    List<Vehicule> tarifVehiculeAsc();
 
-    List<Vehicule> tarifVehiculeDesc(BigDecimal tarifJournalier);
+    List<Vehicule> tarifVehiculeDesc();
+
+    List<Vehicule> tarifCroissantParMarque(String marque);
+
+
+    List<Vehicule> vehiculesParMarqueEtTarif(String marque, BigDecimal tarif);
+
+    List<Vehicule> vehiculesParMarqueOuModele(String marque, String modele);
+
+
+    List<Vehicule> vehiculesParMarques(List<String> marques);
+
+
+    List<Vehicule> vehiculesSaufMarques(List<String> marques);
+
+
+    List<Vehicule> vehiculesParStatut(StatutVehicule statut);
+
+
+    List<Vehicule> vehiculesDisponiblesCroissant();
+
+    List<Vehicule> vehiculesParAgence(Agence agence);
+
+    List<Vehicule> vehiculesParVilleAgence(String ville);
+
+
+    List<Vehicule> vehiculesParNomAgence(String nom);
+
+
+    List<Vehicule> vehiculesParAgenceEtMarque(Agence agence, String marque);
+
+
+    List<Vehicule> vehiculesSansAgence();
+
+    List<Vehicule> vehiculesAvecAgence();
+
+    List<Vehicule> vehiculeMarque(String mat, String marque, CategorieVehicule cv);
+
+    long compterVehiculesParAgence(Agence agence);
+
+    boolean agencePossedeVehicules(Agence agence);
 
 }

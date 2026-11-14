@@ -30,4 +30,5 @@ public class Agence {
     @OneToMany(mappedBy = "agence")
     private List<Employe> employes;
 
+
 }

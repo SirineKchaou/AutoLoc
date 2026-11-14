@@ -3,9 +3,7 @@ package tn.esprit.spring.service.Impl;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import tn.esprit.spring.entity.Agence;
-import tn.esprit.spring.entity.Equipement;
-import tn.esprit.spring.entity.Vehicule;
+import tn.esprit.spring.entity.*;
 import tn.esprit.spring.repository.AgenceRepository;
 import tn.esprit.spring.repository.EquipementRepository;
 import tn.esprit.spring.repository.VehiculeRepository;
@@ -22,19 +20,138 @@ public class VehiculeServiceIMPL implements IVehiculeService {
     VehiculeRepository vehiculeRepository;
     EquipementRepository equipementRepository;
 
+    /*private final VehiculeRepository repository;
+    private final VehiculeValidatorServiceIMPL validator;
+    private final JournalisationServiceIMPL journalisation;
+
+    public VehiculeServiceIMPL(
+            VehiculeRepository repository,
+            VehiculeValidatorServiceIMPL validator,
+            JournalisationServiceIMPL journalisation) {
+
+        this.repository = repository;
+        this.validator = validator;
+        this.journalisation = journalisation;
+    }
+
+    public Vehicule ajouter(Vehicule vehicule) {
+
+        // Validation
+        validator.valider(vehicule);
+
+        // Journalisation
+        journalisation.enregistrer("Ajout du véhicule");
+
+        // Enregistrement dans la base de données
+        return repository.save(vehicule);
+    } */
+
+
     @Override
-    public List<Vehicule> tarifVehiculeEntre(BigDecimal tarifJournalier) {
+    public List<Vehicule> vehiculeMarque(String mat, String marque, CategorieVehicule cv) {
         return List.of();
     }
 
     @Override
-    public List<Vehicule> tarifVehiculeAsc(BigDecimal tarifJournalier) {
-        return List.of();
+    public List<Vehicule> tarifCroissantParMarque(String marque) {
+        return vehiculeRepository.findByMarqueOrderByTarifJournalierAsc(marque);
+    }
+
+
+    @Override
+    public List<Vehicule> vehiculesParMarqueEtTarif(String marque, BigDecimal tarif) {
+        return vehiculeRepository.findByMarqueAndTarifJournalierGreaterThan(marque, tarif);
+    }
+
+
+
+    @Override
+    public List<Vehicule> vehiculesParMarqueOuModele(String marque, String modele) {
+        return vehiculeRepository.findByMarqueOrModele(marque, modele);
+    }
+
+
+    @Override
+    public List<Vehicule> vehiculesParMarques(List<String> marques) {
+        return vehiculeRepository.findByMarqueIn(marques);
+    }
+
+
+    @Override
+    public List<Vehicule> vehiculesSaufMarques(List<String> marques) {
+        return vehiculeRepository.findByMarqueNotIn(marques);
     }
 
     @Override
-    public List<Vehicule> tarifVehiculeDesc(BigDecimal tarifJournalier) {
-        return List.of();
+    public List<Vehicule> vehiculesParStatut(StatutVehicule statut) {
+        return vehiculeRepository.findByStatut(statut);
+    }
+
+    @Override
+    public List<Vehicule> vehiculesDisponiblesCroissant() {
+        return vehiculeRepository.findByStatutOrderByTarifJournalierAsc(
+                StatutVehicule.DISPONIBLE);
+    }
+
+    @Override
+    public List<Vehicule> vehiculesParAgence(Agence agence) {
+        return vehiculeRepository.findByAgence(agence);
+    }
+
+
+    @Override
+    public List<Vehicule> vehiculesParVilleAgence(String ville) {
+        return vehiculeRepository.findByAgence_Ville(ville);
+    }
+
+
+    @Override
+    public List<Vehicule> vehiculesParNomAgence(String nom) {
+        return vehiculeRepository.findByAgence_NomContaining(nom);
+    }
+
+
+    @Override
+    public List<Vehicule> vehiculesParAgenceEtMarque(Agence agence, String marque) {
+        return vehiculeRepository.findByAgenceAndMarque(agence, marque);
+    }
+
+
+    @Override
+    public List<Vehicule> vehiculesSansAgence() {
+        return vehiculeRepository.findByAgenceIsNull();
+    }
+
+
+    @Override
+    public List<Vehicule> vehiculesAvecAgence() {
+        return vehiculeRepository.findByAgenceIsNotNull();
+    }
+
+    @Override
+    public long compterVehiculesParAgence(Agence agence) {
+        return vehiculeRepository.countByAgence(agence);
+    }
+
+
+    @Override
+    public boolean agencePossedeVehicules(Agence agence) {
+        return vehiculeRepository.existsByAgence(agence);
+    }
+
+    @Override
+    public List<Vehicule> tarifVehiculeEntre(BigDecimal min, BigDecimal max) {
+        return vehiculeRepository.findByTarifJournalierBetween(min,max);
+    }
+
+    @Override
+    public List<Vehicule> tarifVehiculeAsc() {
+        return vehiculeRepository.findAllByOrderByTarifJournalierAsc();
+    }
+
+    @Override
+    public List<Vehicule> tarifVehiculeDesc() {
+        return vehiculeRepository.findAllByOrderByTarifJournalierDesc();
     }
 
     @Override

@@ -18,5 +18,5 @@ public interface IClientService {
 
     Client ajouterClientReservation(Client c);
 
-    List<Client> getByNomPrenomMarqueCategorieVehicule(String nom, String prenom, String vehicule, CategorieVehicule cv);
+    List<Client> getByNomPrenomMarqueCategorieVehicule(String nom, String prenom, String marque, CategorieVehicule cv);
 }

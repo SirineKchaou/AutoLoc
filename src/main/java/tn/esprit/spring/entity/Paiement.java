@@ -1,6 +1,7 @@
 package tn.esprit.spring.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +22,7 @@ public class Paiement {
     @Column(name = "id")
     private Long id;
     private long idPaiement;
+    @Min(10)
     private BigDecimal montant;
     private LocalDate datePaiement;
     @Enumerated(EnumType.STRING)

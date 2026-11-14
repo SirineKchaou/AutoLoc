@@ -2,6 +2,7 @@ package tn.esprit.spring.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.entity.Agence;
 import tn.esprit.spring.service.Interface.IAgenceService;
@@ -12,6 +13,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/AgenceController")
+@EnableScheduling
 public class AgenceController {
     IAgenceService iAgenceService;
 
